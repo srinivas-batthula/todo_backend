@@ -15,8 +15,6 @@ app.use(cookieParser())
 
 let corsOptions = {
     origin: ['https://srinivas-batthula.github.io'], // Allow frontend domain   'http://localhost:3000'
-    methods: ['*'],
-    allowedHeaders: ['*'],
     credentials: true,               // Allow credentials (cookies)
 };
 app.use(cors(corsOptions));
