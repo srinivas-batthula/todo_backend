@@ -101,7 +101,7 @@ const Login = async(req, res)=>{
 
 const LogOut = (req, res)=>{
     try{
-        res.clearCookie('jwt', { path: '/' })
+        res.clearCookie('jwt', { path: '/', secure: process.env.MODE+'' === 'production', sameSite: 'None', })
         return res.status(200).json({'status':'success', 'details':"Cookie Cleared, Login again."})
     }
     catch(err){
