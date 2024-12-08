@@ -60,14 +60,14 @@ router.get('/google/callback',
         const response = await JWT.CreateToken(user)
         
         res.cookie('jwt', response.token, {httpOnly: true, secure: process.env.MODE+'' === 'production'})
-        return res.redirect('http://localhost:3000'+'')
+        return res.redirect('https://github.com/srinivas-batthula/todo'+'')
         // json({'status':'success', 'details':'LoggedIn via Google'})
         // redirect('/api/db/tasks')
     }
 )
 
 router.get('/google/failure', (req, res)=>{
-    res.status(403).redirect('http://localhost:3000'+'/login')
+    res.status(403).redirect('https://github.com/srinivas-batthula/todo'+'/login')
     // json({'status':'Un-Authorized', 'details':'Please SignIn to continue...'})
 })
 
