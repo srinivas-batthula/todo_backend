@@ -82,7 +82,7 @@ const Login = async(req, res)=>{
         try{
             const response = await Auth.Login(body)
             if(response.status==='failed (not)'){
-                return res.status(400).json({'status':'Bad Request', 'details':'User Not Found in our DataBase'})
+                return res.status(401).json({'status':'Bad Request', 'details':'User Not Found in our DataBase'})
             }
             else if(response.status==='success'){                   //Success
                 req.google=false
