@@ -5,7 +5,7 @@ const JWT = require('../services/JWT')
 
 
 const Auth_Middleware = async(req, res, next) => {
-    if(!req.cookies){
+    if(!req.cookies.jwt){
         return res.status(401).json({'status': 'failed', 'Auth':false, 'details': "Cookies/Token Not Found"})
     }
     else{
