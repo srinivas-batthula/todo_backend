@@ -59,6 +59,9 @@ const Login = async(body)=>{
         if(res.status==='failed'){
             return {'status':'failed (not)', 'details':'User Not Found in DB (service)'}
         }
+        else if(res.status==='error'){
+            return {'status':'failed', 'details':'Error while fetching DB (service)'}
+        }
         else{
             const data = res.data
             if(data.password === body.password){

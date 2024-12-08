@@ -36,7 +36,7 @@ const ReadDB = async(Model, query, include)=>{
         return {'status':'success', 'details':'data Retrieved successfully (service)', data}
     }
     catch(err){
-        return {'status':'failed', 'details':'Failed to Retrieve (service)', 'error':err}
+        return {'status':'error', 'details':'Failed to Retrieve (service)', 'error':err}
     }
 }
 
