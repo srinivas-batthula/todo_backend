@@ -18,7 +18,7 @@ let corsOptions = {
     // methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,               // Allow credentials (cookies)
 }
-app.use(cors())
+app.use(cors(corsOptions))
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
