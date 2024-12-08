@@ -15,7 +15,6 @@ mongoose.connection.on('error', (err)=>{ console.log(`Error in MongoDB connectio
 mongoose.connection.on('disconnected', ()=>{ console.log('MongoDB is disconnected & attempting to reconnect...'); ConnectDb(); });
 
 
-
-const PORT = 8080                   //Don't set a PORT n.o after hosting.....
+const PORT = 8080                       //Don't set a PORT n.o after hosting.....
 app.listen(PORT, ()=>{ console.log(`Server started & listening at http://localhost:${PORT}/`) })
 
