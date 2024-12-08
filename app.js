@@ -14,11 +14,12 @@ app.use(express.json())
 app.use(cookieParser())
 
 let corsOptions = {
-    origin: 'https://srinivas-batthula.github.io', // Allow frontend domain   'http://localhost:3000'   
-    // methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    origin: ['https://srinivas-batthula.github.io', 'http://localhost:3000'], // Allow frontend domain
     credentials: true,               // Allow credentials (cookies)
 }
 app.use(cors(corsOptions))
+
+app.options('*', cors(corsOptions))
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
