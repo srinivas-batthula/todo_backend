@@ -28,11 +28,12 @@ const ReadDB_tasks = async(Model, userId)=>{    //This method is designed to ret
 
 const ReadDB = async(Model, query, include)=>{
     try{
-        let data = await Model.findOne(query, include);
+        let data = await Model.find(query, include);
 
         if(!data){
             return {'status':'failed', 'details':'Failed to Retrieve (service)'}
         }
+        data = data[0]
         return {'status':'success', 'details':'data Retrieved successfully (service)', data}
     }
     catch(err){
