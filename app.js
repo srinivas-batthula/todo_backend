@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 let corsOptions = {
-    origin: ['http://localhost:3000'], // Allow frontend domain
+    origin: ['http://localhost:3000', 'https://srinivas-batthula.github.io/todo/'], // Allow frontend domain
     credentials: true,               // Allow credentials (cookies)
 };
 app.use(cors(corsOptions));
