@@ -56,7 +56,7 @@ const Register = async(req, res)=>{
             else if(response.status==='success'){                   //Success
                 req.google=false
 
-                res.cookie('jwt', response.token, {httpOnly: true, secure: process.env.MODE === 'production', expires: new Date(Date.now()+7*24*60*60*1000)})
+                res.cookie('jwt', response.token, {httpOnly: true, secure: process.env.MODE === 'production', sameSite: 'None', expires: new Date(Date.now()+7*24*60*60*1000)})
                 return res.status(201).json({'status':'success', 'details':"New User created"})
             }
             else{
@@ -86,7 +86,7 @@ const Login = async(req, res)=>{
             }
             else if(response.status==='success'){                   //Success
                 req.google=false
-                res.cookie('jwt', response.token, {httpOnly: true, secure: process.env.MODE+'' === 'production', expires: new Date(Date.now()+7*24*60*60*1000)})
+                res.cookie('jwt', response.token, {httpOnly: true, secure: process.env.MODE+'' === 'production', sameSite: 'None', expires: new Date(Date.now()+7*24*60*60*1000)})
                 return res.status(201).json({'status':'success', 'details':"User Logged-In"})
             }
             else{
