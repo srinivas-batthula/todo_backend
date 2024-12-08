@@ -57,7 +57,7 @@ const Register = async(req, res)=>{
                 req.google=false
 
                 res.cookie('jwt', response.token, {httpOnly: true, secure: process.env.MODE === 'production', expires: new Date(Date.now()+7*24*60*60*1000)})
-                return res.status(201).json({'status':'success', 'details':"New User created", 'data':response.token})
+                return res.status(201).json({'status':'success', 'details':"New User created"})
             }
             else{
                 return res.status(500).json({'status':'failed', 'details':'Failed to create User'})
@@ -87,7 +87,7 @@ const Login = async(req, res)=>{
             else if(response.status==='success'){                   //Success
                 req.google=false
                 res.cookie('jwt', response.token, {httpOnly: true, secure: process.env.MODE+'' === 'production', expires: new Date(Date.now()+7*24*60*60*1000)})
-                return res.status(201).json({'status':'success', 'details':"User Logged-In", 'data':response.token})
+                return res.status(201).json({'status':'success', 'details':"User Logged-In"})
             }
             else{
                 return res.status(500).json({'status':'failed', 'details':'Internal Server error'})
