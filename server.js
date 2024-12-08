@@ -16,6 +16,6 @@ mongoose.connection.on('disconnected', ()=>{ console.log('MongoDB is disconnecte
 
 
 
-const PORT = (process.env.MODE==='development') ? 8080 : null;                   //Don't set a PORT n.o after hosting.....
-app.listen( ()=>{ console.log(`Server started & listening at http://localhost:${PORT}/`) })
+const PORT = 8080                   //Don't set a PORT n.o after hosting.....
+app.listen(PORT, ()=>{ console.log(`Server started & listening at http://localhost:${PORT}/`) })
 
