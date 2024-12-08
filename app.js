@@ -17,8 +17,8 @@ let corsOptions = {
     origin: 'https://srinivas-batthula.github.io', // Allow frontend domain   'http://localhost:3000'   
     // methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,               // Allow credentials (cookies)
-};
-app.use(cors(corsOptions));
+}
+app.use(cors())
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
