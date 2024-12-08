@@ -5,8 +5,8 @@ const JWT = require('../services/JWT')
 
 
 const Auth_Middleware = async(req, res, next) => {
-    if(!req.cookies.jwt){
-        return res.status(400).json({'status': 'failed', 'Auth':false, 'details': "Cookies/Token Not Found"})
+    if(!req.cookies){
+        return res.status(401).json({'status': 'failed', 'Auth':false, 'details': "Cookies/Token Not Found"})
     }
     else{
         // console.log(req.cookies)
@@ -15,7 +15,7 @@ const Auth_Middleware = async(req, res, next) => {
             if (response.status === 'success') {
                 const u = await CRUD.ReadDB(Model, { email: response.data.email }, {_id:1, username:1, email:1, password:1})
                 if (u.status === 'failed') {
-                    return res.status(404).json({ 'status': 'failed', 'Auth':false, 'details': "User Not Found" });
+                    return res.status(403).json({ 'status': 'failed', 'Auth':false, 'details': "User Not Found" });
                 }
                 else {
                     if ((u.data.password === response.data.password)) {     //Success
@@ -28,7 +28,7 @@ const Auth_Middleware = async(req, res, next) => {
                         next();
                     }
                     else{
-                        return res.status(401).json({'status': 'failed', 'Auth':false, 'details': "Password Not Matched"})
+                        return res.status(403).json({'status': 'failed', 'Auth':false, 'details': "Password Not Matched"})
                     }
                 }
             }
@@ -102,7 +102,7 @@ const Login = async(req, res)=>{
 const LogOut = (req, res)=>{
     try{
         res.clearCookie('jwt', { path: '/' })
-        return res.status(201).json({'status':'success', 'details':"Cookie Cleared, Login again."})
+        return res.status(200).json({'status':'success', 'details':"Cookie Cleared, Login again."})
     }
     catch(err){
         return res.status(500).json({'status':'fail', 'details':"No Cookie Found, Login again.", 'error':err})
