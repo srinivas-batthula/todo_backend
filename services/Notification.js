@@ -103,7 +103,7 @@ const Mail = async (data) => {
                             <p>The following task is due:</p>
                             <p><strong>${data.task}</strong></p>
                             <p>To view more details or update your task, click the link below:</p>
-                            <p><a target='_blank' href="https://github.com/srinivas-batthula/todo" class="link">View Task Details</a></p>
+                            <p><a target='_blank' href="https://srinivas-batthula.github.io/todo" class="link">View Task Details</a></p>
                         </div>
                         <p>Best regards, <br />Your Task Management System</p>
                     </div>
