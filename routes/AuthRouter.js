@@ -62,7 +62,6 @@ router.get('/google/callback',
         res.cookie('jwt', response.token, {httpOnly: true, secure: process.env.MODE+'' === 'production'})
         return res.redirect('https://github.com/srinivas-batthula/todo'+'')
         // json({'status':'success', 'details':'LoggedIn via Google'})
-        // redirect('/api/db/tasks')
     }
 )
 

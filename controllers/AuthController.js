@@ -13,7 +13,7 @@ const Auth_Middleware = async(req, res, next) => {
         try {
             const response = await JWT.VerifyToken(req.cookies.jwt)       //Verifying Token
             if (response.status === 'success') {
-                const u = await CRUD.ReadDB(Model, { email: response.data.email }, {_id:1, username:1, email:1, password:1})
+                const u = await CRUD.ReadDB(Model, { email: response.data.email }, {_id:1, username:1, email:1, password:1, subscription:1})
                 if (u.status === 'failed') {
                     return res.status(408).json({ 'status': 'failed', 'Auth':false, 'details': "User Not Found" });
                 }
@@ -22,7 +22,8 @@ const Auth_Middleware = async(req, res, next) => {
                         req.user = {
                             'username':u.data.username,
                             'userId':u.data._id,
-                            'email':u.data.email
+                            'email':u.data.email,
+                            'subscription':(u.data.subscription) ? true : false
                         };
                         console.log("Authorized")   //Passing to next middleware (endPoint)
                         next();
