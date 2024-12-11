@@ -22,7 +22,7 @@ let user={};
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_1+'',
     clientSecret: process.env.GOOGLE_CLIENT_2+'',
-    callbackURL: "/api/auth/google/callback",
+    callbackURL: (process.env.MODE==='production') ? 'https://todo-backend-1-4u6w.onrender.com/api/auth/google/callback' : "/api/auth/google/callback",
 }, async (accessToken, refreshToken, profile, done) => {
     try {
         const data = {
