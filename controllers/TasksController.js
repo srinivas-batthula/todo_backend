@@ -9,7 +9,8 @@ const getAllTasks = async(req, res)=>{
         response.user = {                  //Returns User-details to client
             "username":req.user.username,
             'user_id':req.user.userId,
-            'email':req.user.email
+            'email':req.user.email,
+            'subscription':req.user.subscription
         }
 
         if(response.status==='success'){
