@@ -20,8 +20,8 @@ let user={};
 
 // Use Google OAuth strategy
 passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID+'',
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET+'',
+    clientID: process.env.GOOGLE_CLIENT_1+'',
+    clientSecret: process.env.GOOGLE_CLIENT_2+'',
     callbackURL: "/api/auth/google/callback",
 }, async (accessToken, refreshToken, profile, done) => {
     try {
