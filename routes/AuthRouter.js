@@ -32,16 +32,24 @@ passport.use(new GoogleStrategy({
         }
         // Check if the user exists in the database
         let response = await CRUD.ReadDB(UserModel, { email: data.email }, { email: 1, password: 1 })
+
+        console.log('passport1: '+response)
+
         if (response.status!=='success') {
             // User not found, create a new user
             response = await CRUD.PostDB(UserModel, data)
         }
+
+        console.log('passport2: '+response)
 
         user = {
             'email': data.email,
             'password': response.data.password
         }
         // Return the user data to the passport callback
+
+        console.log('passport3: '+user)
+
         return done(null, user);
     } catch (err) {
         return done(err);
@@ -57,17 +65,19 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/callback',
     passport.authenticate('google', { session: false, failureRedirect: '/api/auth/google/failure' }),
     async(req, res) => {
+        console.log('success')
         const response = await JWT.CreateToken(user)
         
-        res.cookie('jwt', response.token, {httpOnly: true, secure: process.env.MODE+'' === 'production'})
-        return res.redirect('https://srinivas-batthula.github.io/todo'+'')
-        // json({'status':'success', 'details':'LoggedIn via Google'})
+        res.cookie('jwt', response.token, {path: '/', httpOnly: true, secure: true, sameSite: 'None', expires: new Date(Date.now()+7*24*60*60*1000)})
+        return res.status(201).redirect('https://srinivas-batthula.github.io/todo'+'')
+        // res.json({'status':'success', 'details':'LoggedIn via Google', user})
     }
 )
 
 router.get('/google/failure', (req, res)=>{
+    console.log('failure')
     res.status(403).redirect('https://srinivas-batthula.github.io/todo'+'/login')
-    // json({'status':'Un-Authorized', 'details':'Please SignIn to continue...'})
+    // res.json({'status':'Un-Authorized', 'details':'Please SignIn to continue...', user})
 })
 
 
