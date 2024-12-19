@@ -16,8 +16,9 @@ app.use(cookieParser())
 let corsOptions = {
     origin: ['https://srinivas-batthula.github.io', 'http://localhost:3000'], // Allow frontend domain
     credentials: true,               // Allow credentials (cookies)
-    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type'],
+    maxAge: 600,
 }
 app.use(cors(corsOptions))
 
