@@ -20,9 +20,9 @@ let corsOptions = {
     allowedHeaders: ['Content-Type'],
     maxAge: 600,
 }
-app.use('/api', cors(corsOptions))
+app.use('/', cors(corsOptions))
 
-app.options('/api', cors(corsOptions))
+app.options('/', cors(corsOptions))
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
